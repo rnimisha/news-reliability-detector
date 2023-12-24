@@ -1,40 +1,42 @@
 import os
 
-import pandas as pd
+from pyspark.sql import SparkSession
+from pyspark.sql.dataframe import DataFrame
+from pyspark.sql.functions import lit
 
 current_directory = os.path.abspath("")
 os.chdir(current_directory)
 
 
-def load_fake_data() -> pd.DataFrame:
+def load_fake_data(spark: SparkSession) -> DataFrame:
     """Load fake data csv as add target column as 1
 
     Returns:
-        pd.DataFrame: fake data csv with target
+        DataFrame: fake dataframe with target
     """
-    fake_data = pd.read_csv("data/raw/Fake.csv")
-    fake_data["target"] = 1  # true
+    fake_data = spark.read.csv("data/raw/Fake.csv", header=True, inferSchema=True)
+    fake_data = fake_data.withColumn("target", lit(1))  # true
     return fake_data
 
 
-def load_true_data() -> pd.DataFrame:
+def load_true_data(spark: SparkSession) -> DataFrame:
     """Load true data csv as add target column as 0
 
     Returns:
-        pd.DataFrame: true data csv with target
+        DataFrame: true dataframe with target
     """
-    true_data = pd.read_csv("data/raw/True.csv")
-    true_data["target"] = 0  # false
+    true_data = spark.read.csv("data/raw/True.csv")
+    true_data = true_data.withColumn("target", lit(0))  # false
     return true_data
 
 
-def load() -> pd.DataFrame:
+def load(spark: SparkSession) -> DataFrame:
     """Concatenates fake and true data into one dataframe
 
     Returns:
-        pd.DataFrame: concatenated dataframe
+        DataFrame: concatenated dataframe
     """
-    fake_data = load_fake_data()
-    true_data = load_true_data()
-    dataset = pd.concat([fake_data, true_data]).reset_index(drop=True)
+    fake_data = load_fake_data(spark)
+    true_data = load_true_data(spark)
+    dataset = fake_data.union(true_data)
     return dataset
