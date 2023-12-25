@@ -4,7 +4,7 @@ from nltk.stem.porter import PorterStemmer
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col, count, isnan, rand, when
 
-nltk.download("stopwords")
+nltk.download("stopwords", quiet=True)
 ps = PorterStemmer()
 
 
