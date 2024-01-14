@@ -1,8 +1,8 @@
-# News Reliability Detector
+# News Reliability Detector with PySpark
 
 ## Overview
 
-Machine learning project that classifies news articles into reliable and unreliable categories. It leverages natural language processing (NLP) and machine learning algorithms for predictive analysis.
+Machine learning project that classifies news articles into reliable and unreliable categories.
 
 ## Data Source
 
@@ -10,7 +10,49 @@ Data set for the project is available in Kaglle. You can find the dataset [here]
 
 ## Pipeline Diagram
 
-![Pipeline Diagram](https://github.com/rnimisha/news-reliability-detector/tree/main/src/utils/pipeline.jpg?raw=true)
+![Pipeline Diagram](https://raw.githubusercontent.com/rnimisha/news-reliability-detector/main/src/utils/img/flowchart.jpg?token=GHSAT0AAAAAACMRAOPFPTGUWP3QJQ4U52CMZNCOSOQ)
+
+## Model Evaluation
+
+![Confusion Matrix](https://raw.githubusercontent.com/rnimisha/news-reliability-detector/main/src/utils/img/confusionmatrix.png)
+
+1. Precision
+
+- Out of all prediction as FAKE(1), Random Forest Model has highest precision
+- Out of all prediction as NOT FAKE(0), Random Forest Model has highest precision
+
+2. Recall
+
+- Out of all actual FAKE(1), Logistic Regression Model is more accurate
+- Out of all acutal NOT FAKE(0), Logistic Regression Model is more accurate
+
+## Model Selection Insights
+
+#### 1. Logistic Regression
+
+- Strengths:
+
+  - Balanced precision and recall for both classes.
+  - Robust performance in predicting both fake and not-fake news.
+
+#### 2. Random Forest
+
+- Strengths:
+  - Higher precision for Class 1, making it a good choice if minimizing false positives is crucial.
+  - Moderate recall for Class 1.
+- Key Point:
+
+  - Improved performance when false positives are main concern.
+
+#### 3. Naive Bayes
+
+- Strengths:
+
+  - Balanced performance with competitive precision and recall.
+
+If minimizing false positives is important, Random Forest can be preferred.
+
+If a balance between false positives and false negatives is essential, Logistic Regression and Naive Bayes are considerable options.
 
 ## Installation
 
