@@ -10,7 +10,7 @@ Data set for the project is available in Kaglle. You can find the dataset [here]
 
 ## Pipeline Diagram
 
-![Pipeline Diagram](https://raw.githubusercontent.com/rnimisha/news-reliability-detector/main/src/utils/img/flowchart.jpg?token=GHSAT0AAAAAACMRAOPFPTGUWP3QJQ4U52CMZNCOSOQ)
+![Pipeline Diagram](https://raw.githubusercontent.com/rnimisha/news-reliability-detector/main/src/utils/img/flowchart.jpeg)
 
 ## Model Evaluation
 
